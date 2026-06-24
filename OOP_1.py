@@ -21,7 +21,7 @@ c = Person("jacob", 50, "haifa")
 # b.have_birthday()
 
 class Mosad:
-    def __init__(self, name:str, mosad_type:str, students_count:int, city:str):
+    def __init__(self, name: str, mosad_type: str, students_count: int, city: str):
         self.name = name
         self.type = mosad_type
         self.students_count = students_count
@@ -43,7 +43,7 @@ b = Mosad("Htron", "Yeshiva", 1000, "jerusalem")
 
 # a.print_details()
 # b.print_details()
-# 
+#
 # a.add_students(50)
 # b.remove_students(20)
 #

@@ -1,10 +1,10 @@
 class Animal:
-    def __init__(self, legs_num, suns_num):
+    def __init__(self, legs_num, suns_num) -> None:
         self.tail = None
         self.legs_num = legs_num
         self.suns_num = suns_num
 
-    def add_tail(self, length, thickness, speed):
+    def add_tail(self, length, thickness, speed) -> None:
         self.tail = Tail(length, thickness, speed)
 
 
@@ -31,6 +31,8 @@ class Cat(Animal):
 
 lion = Animal(4, 5)
 lion.add_tail(30, 5, 30)
-print(lion.tail.speed)
+
+# print(lion.tail.speed)
+
 mizi = Cat("black", 8)
 shifrah = Cat("yellow", 17.5)
