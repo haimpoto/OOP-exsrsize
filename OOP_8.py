@@ -58,6 +58,7 @@ class User:
                 return user
         return None
 
+
 # u1 = User.create_user_safely("haim", "qwerty@gmail.com", "Hp12345678")
 # u2 = User.create_user_safely("moshe", "qwert@y.", "1234uuuA")
 # print(User.get_user_count())
@@ -116,6 +117,28 @@ class Rectangle:
         else:
             return "Both Rectangles are the same size"
 
+
 # r1 = Rectangle(12, 5)
 # r2 = Rectangle.create_square(7)
 # print(Rectangle.compare_areas(r1, r2))
+
+
+class Product:
+    TAX_RATES = {
+        "pood": 0.0,
+        "books": 0.0,
+        "electronics": 0.10,
+        "clothing": 0.17,
+        "other": 0.17
+    }
+
+    def __init__(self, category: str, base_price: int | float, name: str = "other", discount_percent: int = 0) -> None:
+        self.__category = category
+        self.__base_price = base_price
+        self.__name = name
+        self.__discount_percent = discount_percent
+
+    @property
+    def name(self):
+        return self.__name
+
