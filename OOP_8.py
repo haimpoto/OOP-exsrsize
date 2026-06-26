@@ -133,12 +133,76 @@ class Product:
     }
 
     def __init__(self, category: str, base_price: int | float, name: str = "other", discount_percent: int = 0) -> None:
-        self.__category = category
-        self.__base_price = base_price
+        self.category = category
+        self.base_price = base_price
         self.__name = name
-        self.__discount_percent = discount_percent
+        self.discount_percent = discount_percent
 
     @property
-    def name(self):
+    def category(self) -> str:
+        return self.__category
+
+    @category.setter
+    def category(self, category: str) -> None:
+        if category in Product.TAX_RATES:
+            self.__category = category
+        else:
+            print("Error. invalid category")
+
+    @property
+    def base_price(self) -> int | float:
+        return self.__base_price
+
+    @base_price.setter
+    def base_price(self, price) -> None:
+        if price > 0:
+            self.__base_price = price
+        else:
+            print("Error: price can't be negative")
+
+    @property
+    def name(self) -> str:
         return self.__name
 
+    @property
+    def discount_percent(self) -> int:
+        return self.__discount_percent
+
+    @discount_percent.setter
+    def discount_percent(self, num: int) -> None:
+        if 0 <= num <= 100:
+            self.__discount_percent = num
+        else:
+            print("Error. discount_percent nust be between 0 and 100")
+
+    @property
+    def price_after_discount(self) -> float:
+        return self.__base_price * (1 - self.__discount_percent / 100)
+
+    @property
+    def final_price(self) -> float:
+        return self.price_after_discount * (1 + Product.TAX_RATES[self.__category])
+
+    @staticmethod
+    def get_tax_rate(category: str) -> float:
+        if category in Product.TAX_RATES:
+            return Product.TAX_RATES[category]
+        else:
+            return Product.TAX_RATES["other"]
+
+    @staticmethod
+    def calculate_bulk_discount(quantity: int, unit_price: int | float) -> float:
+        if quantity < 10:
+            return 0.0
+        elif quantity < 50:
+            return (unit_price * quantity) * 0.05
+        elif quantity < 100:
+            return (unit_price * quantity) * 0.1
+        else:
+            return (unit_price * quantity) * 0.15
+
+
+a1 = Product("pood", 10, "bread", 10)
+a2 = Product("clothing", 100, "shirt", 20)
+print(a1.final_price)
+print(a2.final_price)
