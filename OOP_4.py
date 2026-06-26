@@ -57,19 +57,21 @@ class DigitalSafe:
         self.__attempt_count = 0
 
     def try_unlock(self, code) -> None:
-        if self.__is_locked:
-            if self.__attempt_count < 3:
-                if code == self.__code:
-                    self.__is_locked = False
-                    self.__attempt_count = 0
-                    print("The safe opens")
-                else:
-                    self.__attempt_count += 1
-                    print(f"Incorrect password, {3 - self.__attempt_count} attempts remaining")
-            else:
-                print("The attempts are over")
-        else:
+        if not self.__is_locked:
             print("The safe is already open")
+            return None
+        if self.__attempt_count > 2:
+            print("The attempts are over")
+            return None
+        if code == self.__code:
+            self.__is_locked = False
+            self.__attempt_count = 0
+            print("The safe opens")
+            return None
+        self.__attempt_count += 1
+        print(f"Incorrect password, {3 - self.__attempt_count} attempts remaining")
+        return None
+
 
     def lock(self) -> None:
         self.__is_locked = True
