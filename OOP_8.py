@@ -125,7 +125,7 @@ class Rectangle:
 
 class Product:
     TAX_RATES = {
-        "pood": 0.0,
+        "food": 0.0,
         "books": 0.0,
         "electronics": 0.10,
         "clothing": 0.17,
@@ -154,7 +154,7 @@ class Product:
         return self.__base_price
 
     @base_price.setter
-    def base_price(self, price) -> None:
+    def base_price(self, price: int | float) -> None:
         if price > 0:
             self.__base_price = price
         else:
@@ -202,7 +202,7 @@ class Product:
             return (unit_price * quantity) * 0.15
 
 
-a1 = Product("pood", 10, "bread", 10)
-a2 = Product("clothing", 100, "shirt", 20)
-print(a1.final_price)
-print(a2.final_price)
+# a1 = Product("food", 10, "bread", 10)
+# a2 = Product("clothing", 100, "shirt", 20)
+# print(a1.final_price)
+# print(a2.final_price)

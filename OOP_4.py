@@ -44,7 +44,9 @@ class Car(Vehicle):
 
     def accelerate(self, speed_increase):
         if self.speed + speed_increase < self.__max_speed:
-            self.__speed += speed_increase
+            self.speed += speed_increase
+        else:
+            self.speed = self.__max_speed
 
     def get_max_speed(self):
         print(self.__max_speed)
