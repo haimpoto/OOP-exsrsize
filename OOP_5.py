@@ -114,8 +114,22 @@ class DictUtils:
     @staticmethod
     def merge_dicts(dict1: dict, dict2: dict, conflict_strategy: str = "keep_first") -> dict:
         new_dict = {}
-        
-
+        for key in dict1:
+            new_dict[key] = dict1[key]
+        if conflict_strategy == "keep_first":
+            for key in dict2:
+                if key not in new_dict:
+                    new_dict[key] = dict2[key]
+        elif conflict_strategy == "keep_second":
+            for key in dict2:
+                new_dict[key] = dict2[key]
+        elif conflict_strategy == "sum_values":
+            for key in dict2:
+                if key not in new_dict:
+                    new_dict[key] = dict2[key]
+                else:
+                    new_dict[key] += dict2[key]
+        return new_dict
 
 
 
