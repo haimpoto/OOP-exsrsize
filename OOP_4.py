@@ -14,8 +14,10 @@ class BankAccount:
     def get_balance(self):
         print(self.__balance)
 
-a1 = BankAccount("12", "david", 0)
-a1.get_balance()
+
+# a1 = BankAccount("12", "david", 0)
+# a1.get_balance()
+
 
 class Vehicle:
     def __init__(self, model, color):
@@ -36,6 +38,7 @@ class Vehicle:
     def get_color(self):
         print(self._color)
 
+
 class Car(Vehicle):
     def __init__(self, model, color, max_speed):
         super().__init__(model, color)
@@ -50,6 +53,7 @@ class Car(Vehicle):
 
     def get_max_speed(self):
         print(self.__max_speed)
+
 
 class DigitalSafe:
     def __init__(self, safe_id: str, code: str) -> None:
@@ -74,7 +78,6 @@ class DigitalSafe:
         print(f"Incorrect password, {3 - self.__attempt_count} attempts remaining")
         return None
 
-
     def lock(self) -> None:
         self.__is_locked = True
         print("The safe is locked")
@@ -84,3 +87,26 @@ class DigitalSafe:
 
     def get_attempt_left(self) -> int:
         return self.__attempt_count
+
+
+class GameScore:
+    def __init__(self, player_name: str) -> None:
+        self.player_name = player_name
+        self._level = 0
+        self.__score = 0
+        self.__high_score = 0
+
+    def add_point(self, points: int) -> None:
+        self.__score += points
+
+    def level_up(self) -> None:
+        self._level += 1
+
+    def get_score(self) -> int:
+        return self.__score
+
+    def get_high_score(self) -> int:
+        return self.get_score()
+
+    def reset_score(self) -> None:
+        self.__score = 0
