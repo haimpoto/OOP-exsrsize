@@ -1,3 +1,6 @@
+import random
+
+
 class Playlist:
 
     def __init__(self, name: str, songs: list[str] = None) -> None:
@@ -50,9 +53,7 @@ class Playlist:
         return iter(self.songs)
 
     def __bool__(self) -> bool:
-        if not self.songs:
-            return False
-        return True
+        return bool(self.songs)
 
     def __iadd__(self, song_or_playlist: str | list | Playlist) -> Playlist:
         if isinstance(song_or_playlist, str):
@@ -62,6 +63,18 @@ class Playlist:
         else:
             self.songs += song_or_playlist.songs
         return self
+
+    def __delitem__(self, index: int) -> None:
+        self.songs.pop(index)
+
+    def add_song(self, song: str) -> None:
+        self.songs.append(song)
+
+    def remove_song(self, song: str) -> None:
+        self.songs.remove(song)
+
+    def shuffle(self):
+        random.shuffle(self.songs)
 
 
 p1 = Playlist("fried", ["hazak", "ale_katan"])
